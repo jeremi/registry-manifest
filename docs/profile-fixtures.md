@@ -167,9 +167,9 @@ after vocabulary prefix expansion.
 
 ### "runtime-only key present" in fixture
 
-Remove keys such as `source`, `table`, `scope`, `url`, `url_env`, `file_path`, `query`,
-`required_filters`, `rows_scope`, `bindings`, `capabilities`, `column`, or `visibility` from
-the fixture manifest.
+Remove keys such as `source`, `source_id`, `table`, `scope`, `url`, `url_env`, `file_path`,
+`query`, `required_filters`, `rows_scope`, `bindings`, `capabilities`, `column`, or
+`visibility` from the fixture manifest.
 These keys belong in Registry Relay runtime configuration, not in a portable metadata manifest.
 
 ### validate-profiles passes locally but fails in CI

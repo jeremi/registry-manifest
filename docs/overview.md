@@ -100,7 +100,7 @@ Those live in Registry Relay or Registry Notary configuration; the manifest is p
 runtime-independent.
 
 A full working example is at
-`registry-manifest/profiles/example-civil-registration/fixtures/metadata.yaml`.
+`profiles/example-civil-registration/fixtures/metadata.yaml`.
 
 ## The metadata model
 

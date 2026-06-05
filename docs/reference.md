@@ -161,8 +161,8 @@ The following keys must not appear in a portable manifest.
 Their presence causes `validate-profiles` to fail.
 They belong in Registry Relay or Registry Notary runtime configuration, not in a metadata manifest.
 
-`source`, `table`, `scope`, `url`, `url_env`, `file_path`, `query`, `required_filters`,
-`rows_scope`, `bindings`, `capabilities`, `column`, `visibility`
+`source`, `source_id`, `table`, `scope`, `url`, `url_env`, `file_path`, `query`,
+`required_filters`, `rows_scope`, `bindings`, `capabilities`, `column`, `visibility`
 
 Registry Notary federation secrets, peer allowlists, replay store settings, signing keys, and
 source scopes are runtime config, not portable manifest fields.
@@ -175,7 +175,7 @@ The three schema version strings are: metadata manifest (`registry-manifest/v1`)
 
 Source:
 [`crates/registry-manifest-cli/src/main.rs`](https://github.com/jeremi/registry-manifest/blob/main/crates/registry-manifest-cli/src/main.rs)
-(lines 97 to 221).
+(`publish_command`).
 
 All paths are relative to the `--out` directory.
 
@@ -197,8 +197,8 @@ All paths are relative to the `--out` directory.
 | `profiles/<profile-id>.json` | JSON | Compiled profile structure |
 | `index.json` | JSON | Bundle manifest index (schema version `registry-manifest-index/v1`) |
 
-The `index.json` structure contains the schema version, paths to all artifacts, and an array
-of document entries each with their URL list.
+The `index.json` structure contains the schema version, top-level artifact URLs, and arrays
+for per-profile, per-schema, per-policy, and per-offering documents.
 Source:
 [`crates/registry-manifest-cli/src/main.rs`](https://github.com/jeremi/registry-manifest/blob/main/crates/registry-manifest-cli/src/main.rs)
 
@@ -207,27 +207,36 @@ Minimal example shape:
 ```json
 {
   "schema_version": "registry-manifest-index/v1",
-  "documents": [
-    {
-      "urls": ["https://registry.example.gov/metadata/dcat"],
-      "path": "dcat.jsonld"
-    },
-    {
-      "urls": ["https://registry.example.gov/metadata/shacl"],
-      "path": "shacl.jsonld"
-    }
-  ],
+  "manifest": "/metadata/metadata.yaml",
+  "catalog": "/metadata/catalog.json",
+  "evidence_offerings": "/metadata/evidence-offerings.json",
+  "evidence_offering_documents": [],
+  "policies": "/metadata/policies.jsonld",
+  "policy_documents": [],
+  "dcat": "/metadata/dcat.jsonld",
+  "dcat_profiles": [],
   "service_catalogues": [
     {
       "id": "cpsv-ap",
       "version": "3.2.0",
-      "url": "/metadata/cpsv-ap"
+      "url": "/metadata/cpsv-ap.jsonld",
+      "aliases": ["/metadata/cpsv-ap"],
+      "media_type": "application/ld+json"
     }
   ],
+  "shacl": "/metadata/shacl.jsonld",
+  "schemas": [],
   "form_schemas": [
     {
       "form": "child-support-review-form",
       "url": "/metadata/forms/child-support-review-form/schema.json"
+    }
+  ],
+  "profiles": [],
+  "application_profiles": [
+    {
+      "id": "cpsv-ap",
+      "version": "3.2.0"
     }
   ]
 }
