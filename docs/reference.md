@@ -98,7 +98,7 @@ Source:
 | `title` | `LocalizedText` | Yes | Human-readable catalog title. Plain string or `{en: "...", fr: "..."}` locale map. |
 | `publisher` | `PublisherManifest` | Yes | Publisher record with `name` (string, required), `iri` (optional), and `authority_type` (optional). |
 | `base_url` | string | Yes | HTTP URL used as the base for all relative artifact references. |
-| `application_profiles` | list of `ApplicationProfile` | No | Profile IDs and versions the catalog declares support for (for example, `{id: "bregdcat-ap", version: "3.0.0"}`). |
+| `application_profiles` | list of `ApplicationProfile` | No | Profile IDs and versions the catalog declares support for (for example, `[{id: "bregdcat-ap", version: "3.0.0"}]`). |
 | `standards` | `StandardsManifest` | No | Declares DCAT, SHACL, and JSON Schema versions in use. |
 
 ### DatasetManifest keys (common keys; see [source](https://github.com/jeremi/registry-manifest/blob/main/crates/registry-manifest-core/src/lib.rs) for the full type definition)
